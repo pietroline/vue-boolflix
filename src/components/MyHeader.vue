@@ -6,7 +6,7 @@
             </div>
             <div class="col">
                 <form class="m-2 d-flex justify-content-center justify-content-md-end">
-                    <input class="form-control ms_width_20rem" type="text" v-model="ricerca">
+                    <input class="form-control ms_width_20rem" placeholder="Cerca un film o serie tv...." type="text" v-model="ricerca">
                     <button type="submit" class="btn btn-light ms-2" @click.prevent="avviaRicerca()">Ricerca</button>
                 </form>    
             </div>           
