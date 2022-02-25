@@ -41,8 +41,10 @@
 
 <style lang="scss" scoped>
 
+    @import "./../assets/variables.scss";
+
     #container{
-        background-color: #000;
+        background-color: $colorHeader;
         height: 4rem;
     }
 

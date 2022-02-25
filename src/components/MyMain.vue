@@ -1,6 +1,6 @@
 <template>
     <main id="container">
-        <ul>
+        <ul class="text-white">
             <li class="mb-5 list-unstyled" v-for="(film, index) in films" :key="index">
                 <span>Film n° {{index+1}}:</span>
                 <ul>
@@ -23,10 +23,13 @@
     }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+
+    @import "./../assets/variables.scss";
+
     #container{
         height: calc(100vh - 4rem);
-        background-color: grey;
+        background-color: $colorMain;
 
         overflow: scroll;
     }
