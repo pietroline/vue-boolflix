@@ -5,7 +5,7 @@
                 <MainLogo/>
                 <form class="d-flex">
                     <input class="form-control" type="text" v-model="ricerca">
-                    <button type="submit" class="btn btn-light ms-2" @click.prevent="$emit('ricerca', ricerca)">Ricerca</button>
+                    <button type="submit" class="btn btn-light ms-2" @click.prevent="avviaRicerca()">Ricerca</button>
                 </form>
             </div>           
         </div>
@@ -24,6 +24,16 @@
         data(){
             return{
                 ricerca: "",
+            }
+        },
+        methods:{
+            avviaRicerca(){
+                if(this.ricerca != ""){
+                    this.$emit('ricerca', this.ricerca);
+                    setTimeout(()=>{
+                        this.ricerca=""
+                    },100);
+                }
             }
         }
     }

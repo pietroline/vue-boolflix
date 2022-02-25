@@ -34,13 +34,16 @@
           //effettuo richiesta axios
           const axios = require('axios');
 
-          axios.get(endPoint)
-            .then(response => {
-              this.apiRisposta = response.data.results;
-            })
-            .catch(function (error) {
-              console.log(error);
-            })
+          axios
+              .get(endPoint)
+
+              .then(response => {
+                this.apiRisposta = response.data.results;
+              })
+              
+              .catch(function (error) {
+                console.log(error);
+              })
             
       
 
