@@ -1,6 +1,6 @@
 <template>
-    <main id="container">
-        <ul class="text-white">
+    <main class="container-fluid">
+        <ul class="text-white mt-5">
             <li class="mb-5 list-unstyled" v-for="(film, index) in films" :key="index">
                 <span>Film n° {{index+1}}:</span>
                 <ul>
@@ -27,7 +27,7 @@
 
     @import "./../assets/variables.scss";
 
-    #container{
+    .container-fluid{
         height: calc(100vh - 4rem);
         background-color: $colorMain;
 

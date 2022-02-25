@@ -1,12 +1,14 @@
 <template>
-    <header id="container">
-        <div class="row row-cols-1">
-            <div class="col d-flex align-items-center justify-content-between px-4">
+    <header class="container-fluid">
+        <div class="row row-cols-1 row-cols-md-2 align-items-center">
+            <div class="col d-flex justify-content-center justify-content-md-start">
                 <MainLogo/>
-                <form class="d-flex">
-                    <input class="form-control" type="text" v-model="ricerca">
+            </div>
+            <div class="col">
+                <form class="m-2 d-flex justify-content-center justify-content-md-end">
+                    <input class="form-control ms_width_20rem" type="text" v-model="ricerca">
                     <button type="submit" class="btn btn-light ms-2" @click.prevent="avviaRicerca()">Ricerca</button>
-                </form>
+                </form>    
             </div>           
         </div>
     </header>
@@ -43,9 +45,14 @@
 
     @import "./../assets/variables.scss";
 
-    #container{
+    .container-fluid{
         background-color: $colorHeader;
-        height: 4rem;
+        
+        line-height: 4rem;
+
+        .ms_width_20rem{
+            width: 20rem;
+        }
     }
 
 </style>

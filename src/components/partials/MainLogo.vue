@@ -1,5 +1,5 @@
 <template>
-    <div class="text-danger fs-1">BOOLFLIX</div>
+    <span class="text-danger fs-1">BOOLFLIX</span>
 </template>
 
 <script>
