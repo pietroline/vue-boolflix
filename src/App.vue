@@ -3,7 +3,7 @@
     
     <MyHeader @ricerca="richiestaAPI"/>
 
-    <MyMain :films="apiRisposta"/>
+    <MyMain :films="apiRisposta" :valoreCercato="valoreCercato"/>
   </div>
 </template>
 
@@ -23,10 +23,13 @@
         apiKey: "645226498552dd0739079c2786443593",
         apiLanguage: "it-IT",
         apiRisposta: [],
+        valoreCercato: null,
       }
     },
     methods:{
       richiestaAPI(valoreCercato){
+
+          this.valoreCercato = valoreCercato;
 
           //genero endPoint
           let endPoint = `https://api.themoviedb.org/3/search/movie?language=${this.apiLanguage}&api_key=${this.apiKey}&query=${valoreCercato}`;
@@ -40,14 +43,11 @@
               .then(response => {
                 this.apiRisposta = response.data.results;
               })
-              
+
               .catch(function (error) {
                 console.log(error);
               })
-            
-      
 
-          
         }
     }
   }
