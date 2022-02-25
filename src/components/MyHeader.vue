@@ -4,8 +4,8 @@
             <div class="col d-flex align-items-center justify-content-between px-4">
                 <MainLogo/>
                 <form class="d-flex">
-                    <input class="form-control" type="text">
-                    <button type="submit" class="btn btn-light ms-2">Ricerca</button>
+                    <input class="form-control" type="text" v-model="ricerca">
+                    <button type="submit" class="btn btn-light ms-2" @click.prevent="$emit('ricerca', ricerca)">Ricerca</button>
                 </form>
             </div>           
         </div>
@@ -20,6 +20,11 @@
         name:"MyHeader.vue",
         components:{
             MainLogo,
+        },
+        data(){
+            return{
+                ricerca: "",
+            }
         }
     }
 </script>
