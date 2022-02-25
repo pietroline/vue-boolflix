@@ -20,7 +20,7 @@
             </div>
             <div v-else class="text-center fs-1">
                 <div class="m-5">Benvenuto in Boolflix</div>
-                <div class="m-5">Adesso puoi guardare i tuoi film e serie tv preferiti stando comodamente seduto sul tuo divano</div>
+                <div class="m-5">Adesso puoi guardare film e serie tv preferite stando comodamente seduto sul tuo divano</div>
                 <div class="m-5">Cosa aspetti inizia subito una ricerca!!!</div>
             </div>
         </ul>
