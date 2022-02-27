@@ -7,7 +7,7 @@
                     <ul>
                         <li>Titolo: {{film.title}} </li>
                         <li v-show="film.title!=film.original_title">Titolo Originale: {{film.original_title}} </li>
-                        <li>Lingua: {{film.original_language}}</li>
+                        <li>Lingua: {{emojiFlag(index)}}</li>
                         <li>Voto: {{film.vote_average}}</li>
                     </ul>
                 </li>
@@ -34,6 +34,30 @@
             "films": Array,
             "valoreCercato": String,
         },
+        methods:{
+            emojiFlag(indice){
+                //uesto metodo serve a generare l'emoticon della bandiera adatta in base al dato ricevuto dal server API
+
+                let emoji = require('node-emoji')
+                let emoticon = this.films[indice].original_language;
+
+               
+                if(emoticon == "en"){ //gestione lingua inglese
+                    emoticon = "gb";
+                }else if(emoticon == "hi"){ //gestione lingua hindi
+                    emoticon = "in";
+                }else if(emoticon == "sv"){ //gestione lingua svedese
+                    emoticon = "ax";
+                }else if(emoticon == "ja"){ //gestione lingua giapponese
+                    emoticon = "jp";
+                }else if(emoticon == "ko"){ //gestione lingua coreana
+                    emoticon = "kr";
+                }
+                //...eventualmente gestire altre lingue...
+
+                return emoji.get(`flag-${emoticon}`)
+            }
+        }
     }
 </script>
 
