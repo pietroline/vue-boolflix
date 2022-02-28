@@ -13,6 +13,11 @@
                 <i class="bi bi-star-fill"></i>
             </span>
 
+             <!-- stella mezza -->
+            <span v-show="scoreVote()[0] + scoreVote()[1] < 5">
+                <i class="bi bi-star-half"></i>
+            </span>
+
             <!-- stelle vuote -->
             <span v-for="i in scoreVote()[1]" :key="i+scoreVote()[0]">
                 <i class="bi bi-star"></i>
@@ -43,10 +48,16 @@
 
             scoreVote(){
                 // converto range voto 0-10 in range voto 0-5, e calcolo voto stellePiene e stelleVuote
-                let voto = this.voto;
-                let stellePiene = math.floor(voto/2);
+                const voto = math.round(this.voto);
+                const stellePiene = math.floor(voto/2);
                 let stelleVuote = 5 - stellePiene;
-                
+
+                //calcolo la presenza della stella mezza
+                const resto = (voto/2 - stellePiene);
+                if(resto == 0.5){
+                    stelleVuote -= 1;
+                }
+                                
                 return [stellePiene, stelleVuote];
             },
 
