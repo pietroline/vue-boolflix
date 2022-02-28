@@ -1,8 +1,9 @@
 <template>
     <section>
 
-        <h1 v-show="series.length > 0">SERIE TV</h1>
-        <ul v-if="series.length > 0" class="row">
+        <h1 class="categoria" v-show="series.length > 0"  @click="mostraNascondi()">SERIE TV</h1>
+
+        <ul v-if="series.length > 0" class="row" v-show="serieCercate">
 
             <li class="col text-center mb-5 list-unstyled" 
                 v-for="(serie, index) in series" 
@@ -43,6 +44,7 @@
         data(){
             return{
                 show: false,
+                serieCercate: true,
             }
         },
         props:{
@@ -55,6 +57,10 @@
                 setTimeout(() => this.show = true ,200);
             },
 
+            mostraNascondi(){
+                this.serieCercate = !this.serieCercate;
+            }
+
         }
         
         
@@ -62,5 +68,7 @@
 </script>
 
 <style>
-
+    .categoria{
+        cursor: pointer;
+    }
 </style>

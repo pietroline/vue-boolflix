@@ -1,8 +1,10 @@
 <template>
     <section>
 
-        <h1 v-show="films.length > 0">FILM</h1>
-        <ul v-if="films.length > 0" class="row">
+        
+        <h1 class="categoria" v-show="films.length > 0"  @click="mostraNascondi()">FILM</h1>
+    
+        <ul v-if="films.length > 0" class="row" v-show="filmsCercati">
 
             <li class="col text-center mb-5 list-unstyled" 
                 v-for="(film, index) in films" 
@@ -44,6 +46,7 @@
         data(){
             return{
                 show: false,
+                filmsCercati: true,
             }
         },
         props:{
@@ -56,12 +59,19 @@
                 setTimeout(() => this.show = true ,200);
             },
 
+            mostraNascondi(){
+                this.filmsCercati = !this.filmsCercati;
+            }
+
         }
-        
         
     }
 </script>
 
 <style>
+
+    .categoria{
+        cursor: pointer;
+    }
 
 </style>
