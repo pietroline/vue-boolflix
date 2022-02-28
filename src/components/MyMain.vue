@@ -1,7 +1,7 @@
 <template>
     <main class="container-fluid">
-        <ul class="text-white mt-5">
-            <div v-if="films.length > 0">
+        <div class="text-white mt-5">
+            <ul v-if="films.length > 0">
                 <li class="mb-5 list-unstyled" v-for="(film, index) in films" :key="index">
                     <span>Film n° {{index+1}}:</span>
                     <ul>
@@ -11,8 +11,8 @@
                         <li>Voto: {{film.vote_average}}</li>
                     </ul>
                 </li>
-            </div>
-            <div v-else-if="valoreCercato !=null">
+            </ul>
+            <div v-else-if="valoreCercato != null">
                 <div>
                     <span class="fs-1">(Non ci sono risultati)</span>
                     <div>Hai cercato: "{{valoreCercato}}"</div>
@@ -23,7 +23,7 @@
                 <div class="m-5">Adesso puoi guardare film e serie tv preferite stando comodamente seduto sul tuo divano</div>
                 <div class="m-5">Cosa aspetti inizia subito una ricerca!!!</div>
             </div>
-        </ul>
+        </div>
     </main>
 </template>
 
