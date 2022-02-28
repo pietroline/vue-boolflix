@@ -3,7 +3,7 @@
     
     <MyHeader @ricerca="richiestaAPI"/>
 
-    <MyMain :films="apiRispostaFilms" :valoreCercato="valoreCercato"/>
+    <MyMain :films="apiRispostaFilms" :series="apiRispostaSerieTv" :valoreCercato="valoreCercato"/>
   </div>
 </template>
 
