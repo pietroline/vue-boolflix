@@ -9,17 +9,17 @@
             <span>Voto:</span> 
 
             <!-- stelle piene -->
-            <span v-for="i in scoreVote()[0]" :key="i">
+            <span v-for="i in getStars().piene" :key="i">
                 <i class="bi bi-star-fill"></i>
             </span>
 
              <!-- stella mezza -->
-            <span v-show="scoreVote()[0] + scoreVote()[1] < 5">
+            <span v-show="getStars().piene + getStars().vuote < 5">
                 <i class="bi bi-star-half"></i>
             </span>
 
             <!-- stelle vuote -->
-            <span v-for="i in scoreVote()[1]" :key="i+scoreVote()[0]">
+            <span v-for="i in getStars().vuote" :key="i+getStars().piene">
                 <i class="bi bi-star"></i>
             </span>
         </li>
@@ -46,7 +46,7 @@
         },
         methods:{   
 
-            scoreVote(){
+            getStars(){
                 // converto range voto 0-10 in range voto 0-5, e calcolo voto stellePiene e stelleVuote
                 const voto = math.round(this.voto);
                 const stellePiene = math.floor(voto/2);
@@ -57,8 +57,13 @@
                 if(resto == 0.5){
                     stelleVuote -= 1;
                 }
+
+                const stelle = {
+                    "piene": stellePiene,
+                    "vuote": stelleVuote,
+                }
                                 
-                return [stellePiene, stelleVuote];
+                return stelle;
             },
 
             emojiFlag(language){
