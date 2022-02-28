@@ -3,7 +3,7 @@
     
     <MyHeader @ricerca="richiestaAPI"/>
 
-    <MyMain :films="apiRisposta" :valoreCercato="valoreCercato"/>
+    <MyMain :films="apiRispostaFilms" :valoreCercato="valoreCercato"/>
   </div>
 </template>
 
@@ -11,6 +11,9 @@
 
   import MyHeader from "./components/MyHeader";
   import MyMain from "./components/MyMain";
+
+  //importo axios
+  const axios = require('axios');
 
   export default {
     name: 'App',
@@ -22,33 +25,45 @@
       return{
         apiKey: "645226498552dd0739079c2786443593",
         apiLanguage: "it-IT",
-        apiRisposta: [],
+        apiRispostaFilms: [],
+        apiRispostaSerieTv: [],
         valoreCercato: null,
       }
     },
     methods:{
+
       richiestaAPI(valoreCercato){
 
-          this.valoreCercato = valoreCercato;
+        this.valoreCercato = valoreCercato;
+
+        //variabile contenente la sezione di ricerca su TMDB
+        const ricerche = ["movie", "tv"];
+        
+        ricerche.forEach(element => {
 
           //genero endPoint
-          let endPoint = `https://api.themoviedb.org/3/search/movie?language=${this.apiLanguage}&api_key=${this.apiKey}&query=${valoreCercato}`;
+          let endPoint = `https://api.themoviedb.org/3/search/${element}?language=${this.apiLanguage}&api_key=${this.apiKey}&query=${valoreCercato}`;
           
           //effettuo richiesta axios
-          const axios = require('axios');
-
           axios
               .get(endPoint)
 
               .then(response => {
-                this.apiRisposta = response.data.results;
+                if(element == ricerche[0]){
+                  this.apiRispostaFilms = response.data.results;
+                }else if(element == ricerche[1]){
+                  this.apiRispostaSerieTv = response.data.results;
+                }
               })
 
               .catch(function (error) {
                 console.log(error);
-              })
+              });
+                
+        });        
 
-        }
+      }
+
     }
   }
 </script>
