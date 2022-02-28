@@ -1,6 +1,7 @@
 <template>
 
     <ul>
+        <img :src="'https://image.tmdb.org/t/p/w342'+poster_path" :alt="'Img ' + titolo_originale">
         <li>Titolo: {{titolo}} </li>
         <li v-show="titolo!=titolo_originale">Titolo Originale: {{titolo_originale}} </li>
         <li>Lingua: {{emojiFlag(lingua_originale)}}</li>
@@ -21,6 +22,7 @@
             "titolo_originale": String,
             "lingua_originale": String,
             "voto": Number,
+            "poster_path": String,
         },
         methods:{   
 

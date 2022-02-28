@@ -12,7 +12,9 @@
                 :titolo="film.title" 
                 :titolo_originale="film.original_title" 
                 :lingua_originale="film.original_language" 
-                :voto="film.vote_average"/>
+                :voto="film.vote_average"
+                :poster_path="film.poster_path"/>
+                
             </li>
 
         </ul>

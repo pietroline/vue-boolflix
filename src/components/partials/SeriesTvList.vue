@@ -12,7 +12,8 @@
                 :titolo="serie.name" 
                 :titolo_originale="serie.original_name" 
                 :lingua_originale="serie.original_language" 
-                :voto="serie.vote_average"/>
+                :voto="serie.vote_average"
+                :poster_path="serie.poster_path"/>
             </li>
 
         </ul>
