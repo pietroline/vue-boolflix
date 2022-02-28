@@ -1,7 +1,15 @@
 <template>
     
     <ul>
-        <li class="list-unstyled"><img :src="'https://image.tmdb.org/t/p/w342'+poster_path" :alt="'Img ' + titolo_originale"></li>
+        <li class="list-unstyled">
+            <div v-if="poster_path == null">
+                <img src="./../../assets/img/noPhotoAvailable.png" alt="">
+            </div>
+            <div v-else>
+                <img :src="'https://image.tmdb.org/t/p/w342'+poster_path" :alt="'Img ' + titolo_originale">
+            </div>
+            
+        </li>
         <li>Titolo: {{titolo}} </li>
         <li v-show="titolo!=titolo_originale">Titolo Originale: {{titolo_originale}} </li>
         <li>Lingua: {{emojiFlag(lingua_originale)}}</li>
@@ -92,4 +100,15 @@
 
 <style>
 
+    ul li img{
+        /* imposto altezza fissa, la larghezza è uguale per tutte le img ed è data dal server api,
+        per come sono inseriti gli src => w342 */
+        height: 35rem;
+    }
+
+    .noImg{
+        width: 373px;
+        height: 35rem;
+        background-color: red;
+    }
 </style>

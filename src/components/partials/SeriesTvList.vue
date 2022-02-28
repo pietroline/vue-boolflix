@@ -2,9 +2,9 @@
     <section>
 
         <h1 v-show="series.length > 0">SERIE TV</h1>
-        <ul v-if="series.length > 0">
+        <ul v-if="series.length > 0" class="row">
 
-            <li class="mb-5 list-unstyled" 
+            <li class="col text-center mb-5 list-unstyled" 
                 v-for="(serie, index) in series" 
                 :key="index">
 
