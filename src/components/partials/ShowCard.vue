@@ -5,7 +5,19 @@
         <li>Titolo: {{titolo}} </li>
         <li v-show="titolo!=titolo_originale">Titolo Originale: {{titolo_originale}} </li>
         <li>Lingua: {{emojiFlag(lingua_originale)}}</li>
-        <li>Voto: {{voto}}</li>
+        <li>
+            <span>Voto:</span> 
+
+            <!-- stelle piene -->
+            <span v-for="i in scoreVote()[0]" :key="i">
+                <i class="bi bi-star-fill"></i>
+            </span>
+
+            <!-- stelle vuote -->
+            <span v-for="i in scoreVote()[1]" :key="i+scoreVote()[0]">
+                <i class="bi bi-star"></i>
+            </span>
+        </li>
     </ul>
             
 </template>
@@ -14,6 +26,9 @@
 
     //importo node-emoji, nessessario per emojiFlag(language)
     let emoji = require('node-emoji');
+
+    // importo mathjs, necessario per scoreVote()
+    let math = require("mathjs");
 
     export default {
         name: "ShowCard",
@@ -25,6 +40,15 @@
             "poster_path": String,
         },
         methods:{   
+
+            scoreVote(){
+                // converto range voto 0-10 in range voto 0-5, e calcolo voto stellePiene e stelleVuote
+                let voto = this.voto;
+                let stellePiene = math.floor(voto/2);
+                let stelleVuote = 5 - stellePiene;
+                
+                return [stellePiene, stelleVuote];
+            },
 
             emojiFlag(language){
                 //questo metodo serve a generare l'emoticon della bandiera adatta in base al dato ricevuto dal server API
