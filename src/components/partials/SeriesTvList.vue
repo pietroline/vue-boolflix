@@ -1,11 +1,11 @@
 <template>
     <section>
 
-        <h1 class="categoria" v-show="series.length > 0"  @click="mostraNascondi()">SERIE TV</h1>
+        <h1 class="categoria" :class="t" v-show="series.length > 0"  @click="mostraNascondi()">SERIE TV</h1>
 
         <ul v-if="series.length > 0" class="row" v-show="serieCercate">
 
-            <li class="col text-center mb-5 list-unstyled" 
+            <li class="col mb-5 list-unstyled" 
                 v-for="(serie, index) in series" 
                 :key="index">
 
@@ -14,7 +14,9 @@
                 :titolo_originale="serie.original_name" 
                 :lingua_originale="serie.original_language" 
                 :voto="serie.vote_average"
-                :poster_path="serie.poster_path"/>
+                :poster_path="serie.poster_path"
+                :overview="serie.overview"/>
+
             </li>
 
         </ul>
@@ -67,8 +69,12 @@
     }
 </script>
 
-<style>
+<style lang="scss" scoped>
     .categoria{
         cursor: pointer;
+
+        &:hover{
+            color: red;
+        }
     }
 </style>

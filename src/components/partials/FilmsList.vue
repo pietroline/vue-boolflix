@@ -6,7 +6,7 @@
     
         <ul v-if="films.length > 0" class="row" v-show="filmsCercati">
 
-            <li class="col text-center mb-5 list-unstyled" 
+            <li class="col mb-5 list-unstyled" 
                 v-for="(film, index) in films" 
                 :key="index">
 
@@ -15,8 +15,10 @@
                 :titolo_originale="film.original_title" 
                 :lingua_originale="film.original_language" 
                 :voto="film.vote_average"
-                :poster_path="film.poster_path"/>
-                
+                :poster_path="film.poster_path"
+                :overview="film.overview"
+                :vote_count="film.vote_count"/>
+    
             </li>
 
         </ul>
@@ -68,10 +70,14 @@
     }
 </script>
 
-<style>
+<style lang="scss" scoped>
 
     .categoria{
         cursor: pointer;
+
+        &:hover{
+            color: red;
+        }
     }
 
 </style>

@@ -1,38 +1,58 @@
 <template>
-    
-    <ul>
-        <li class="list-unstyled">
-            <div v-if="poster_path == null">
-                <img src="./../../assets/img/noPhotoAvailable.png" alt="">
+    <div class="card-flip">
+        
+        <div class="card-front">
+            <img v-if="poster_path == null" src="./../../assets/img/noPhotoAvailable.png" alt="">
+            <img v-else :src="'https://image.tmdb.org/t/p/w342'+poster_path" :alt="'Img ' + titolo_originale">
+        </div>
+        
+        <div class="card-back bg-dark overflow-scroll">
+            <div class="card-body">
+
+                <div>
+                    <span>Titolo:&nbsp;</span> 
+                    <h1 class="fs-6 d-inline fw-normal">{{titolo}}</h1> 
+                </div>
+
+                <div v-show="titolo!=titolo_originale">
+                    <span>Titolo Originale:&nbsp;</span>
+                    <h1 class="fs-6 d-inline fw-normal">{{titolo_originale}}</h1>
+                </div>
+
+                <div>
+                    <span>Lingua:&nbsp;</span>
+                    <h4 class="fs-6 d-inline fw-normal">{{emojiFlag(lingua_originale)}}</h4>
+                </div>
+
+                <div>
+                    <span>Voto:&nbsp;</span> 
+
+                    <!-- stelle piene -->
+                    <span v-for="i in getStars().piene" :key="i">
+                        <i class="bi bi-star-fill text-warning"></i>
+                    </span>
+
+                    <!-- stella mezza -->
+                    <span v-show="getStars().piene + getStars().vuote < 5">
+                        <i class="bi bi-star-half text-warning"></i>
+                    </span>
+
+                    <!-- stelle vuote -->
+                    <span v-for="i in getStars().vuote" :key="i+getStars().piene">
+                        <i class="bi bi-star"></i>
+                    </span>
+
+                    <span>&nbsp;(<u class="voteCount">{{vote_count}}</u>)</span>
+                </div>
+
+                <div v-show="overview">
+                    <span>Overview:&nbsp;</span> 
+                    <p class="d-inline">{{overview}}</p> 
+                </div>
             </div>
-            <div v-else>
-                <img :src="'https://image.tmdb.org/t/p/w342'+poster_path" :alt="'Img ' + titolo_originale">
-            </div>
-            
-        </li>
-        <li>Titolo: {{titolo}} </li>
-        <li v-show="titolo!=titolo_originale">Titolo Originale: {{titolo_originale}} </li>
-        <li>Lingua: {{emojiFlag(lingua_originale)}}</li>
-        <li>
-            <span>Voto:</span> 
-
-            <!-- stelle piene -->
-            <span v-for="i in getStars().piene" :key="i">
-                <i class="bi bi-star-fill"></i>
-            </span>
-
-             <!-- stella mezza -->
-            <span v-show="getStars().piene + getStars().vuote < 5">
-                <i class="bi bi-star-half"></i>
-            </span>
-
-            <!-- stelle vuote -->
-            <span v-for="i in getStars().vuote" :key="i+getStars().piene">
-                <i class="bi bi-star"></i>
-            </span>
-        </li>
-    </ul>
-            
+        </div>
+        
+    </div>     
 </template>
 
 <script>
@@ -51,6 +71,8 @@
             "lingua_originale": String,
             "voto": Number,
             "poster_path": String,
+            "overview": String,
+            "vote_count": Number,
         },
         methods:{   
 
@@ -98,17 +120,54 @@
     }
 </script>
 
-<style>
+<style lang="scss" scoped>
 
-    ul li img{
+    @import "./../../assets/variables.scss";
+
+    img{
         /* imposto altezza fissa, la larghezza è uguale per tutte le img ed è data dal server api,
         per come sono inseriti gli src => w342 */
         height: 35rem;
+        width: 25rem; /*forzo anche larghezza fissa, diversa da w342 ma vicina per dimensione, così la img è uguale in dimensioni alla card-flip*/
+    }
+
+    .card-flip > div {
+        backface-visibility: hidden;
+        transition: transform 300ms linear;
+        height: 35rem;
+        width: 25rem;
+    }
+
+    .card-flip{
+        position: relative;
+        cursor: pointer;
+    }
+
+    .card-back {
+        transform: rotateY(180deg);
+        position: absolute;
+        top: 0;
+    }
+
+    .card-flip:hover .card-front {
+        transform: rotateY(-180deg);
+    }
+  
+    .card-flip:hover .card-back {
+        transform: rotateY(0deg);
+    }
+
+    .card-body div span:first-child{
+        font-weight: bold;
+    }
+
+    .voteCount:hover{
+        color:$colorTextHover;
     }
 
     .noImg{
         width: 373px;
         height: 35rem;
-        background-color: red;
+        background-color: $colorTextHover;
     }
 </style>
