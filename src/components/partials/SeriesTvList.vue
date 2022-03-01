@@ -1,7 +1,7 @@
 <template>
     <section>
 
-        <h1 class="categoria" :class="t" v-show="series.length > 0"  @click="mostraNascondi()">SERIE TV</h1>
+        <h1 class="categoria" v-show="series.length > 0"  @click="mostraNascondi()">SERIE TV</h1>
 
         <ul v-if="series.length > 0" class="row" v-show="serieCercate">
 
