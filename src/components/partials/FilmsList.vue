@@ -1,7 +1,6 @@
 <template>
     <section>
 
-        
         <h1 class="categoria d-inline" v-show="films.length > 0"  @click="mostraNascondi()">FILM</h1>
     
         <ul v-if="films.length > 0" class="row" v-show="filmsCercati">
