@@ -8,15 +8,59 @@
         
         <div class="card-back bg-dark overflow-scroll">
             <div class="card-body">
-
+ 
                 <div>
                     <span>Titolo:&nbsp;</span> 
                     <h1 class="fs-6 d-inline fw-normal">{{titolo}}</h1> 
                 </div>
-
+  
                 <div v-show="titolo!=titolo_originale">
                     <span>Titolo Originale:&nbsp;</span>
                     <h1 class="fs-6 d-inline fw-normal">{{titolo_originale}}</h1>
+                </div>
+
+                <div>
+                    <span>Genere:&nbsp;</span>
+                    <h5 class="fs-6 d-inline">
+                        <!-- punto in cui il codice si rompe -->
+
+                        {{testGeneri(genres)}}
+ 
+                        <!-- Aggiungendo una condizione di v-if="genres != undefined"su h5 evito i vue warn ottenuti dalle righe successive,
+                        perchè giustamente quando genres è undefined non posso accedere proprietà length.
+                        Inoltre per visualizzare il risultato è necessario dopo aver fatto la ricerca sul browser, tornare su questo codice,
+                        aggiungere uno spazio ovunque tu voglia e salvare. Magicamente i generi sul browser appariranno!!!
+                        Come se il codice html venisse eseguito prima di prendere l'informazione sui generi dalla props genres, infatti
+                        dopo aver fatto la ricerca sul browser (generi non renderizzati) ma presenti correttamente sull'ispettore di vue-->
+                        <!-- <span class="fw-normal" v-for="i in genres.length" 
+                                :key="'genere '+i">
+                        
+                            {{genres[i-1]}} <span v-show="i != genres.length">,</span> &nbsp;
+                        </span> -->
+ 
+                    </h5>
+                </div>
+   
+                <div>
+                    <span>Attori:&nbsp;</span>
+                    <h5 class="fs-6 d-inline">
+                        <!-- punto in cui il codice si rompe -->
+
+                        <!-- {{testAttori(cast)}} -->
+ 
+                        <!-- Aggiungendo una condizione di v-if="cast != undefined"su h5 evito i vue warn ottenuti dalle righe successive,
+                        perchè giustamente quando cast è undefined non posso accedere proprietà length.
+                        Inoltre per visualizzare il risultato è necessario dopo aver fatto la ricerca sul browser, tornare su questo codice,
+                        aggiungere uno spazio ovunque tu voglia e salvare. Magicamente gli attori sul browser appariranno!!!
+                        Come se il codice html venisse eseguito prima di prendere l'informazione sugli attori dalla props cast, infatti
+                        dopo aver fatto la ricerca sul browser (attori non renderizzati) ma presenti correttamente sull'ispettore di vue-->
+                        <!-- <span class="fw-normal" v-for="i in cast.length" 
+                                :key="'cast '+i">
+                        
+                            {{cast[i-1].original_name}} <span v-show="i != cast.length">,</span> &nbsp;
+                        </span> -->
+ 
+                    </h5>
                 </div>
 
                 <div>
@@ -73,8 +117,17 @@
             "poster_path": String,
             "overview": String,
             "vote_count": Number,
+            "genres": Array,
+            "cast": Array,
         },
         methods:{   
+   
+            testGeneri(generi){
+                console.log(generi);
+            },
+            // testAttori(attoriFilm){
+            //     console.log(attoriFilm);
+            // },
 
             getStars(){
                 // converto range voto 0-10 in range voto 0-5, e calcolo voto stellePiene e stelleVuote

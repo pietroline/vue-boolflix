@@ -2,14 +2,14 @@
     <section>
 
         
-        <h1 class="categoria" v-show="films.length > 0"  @click="mostraNascondi()">FILM</h1>
+        <h1 class="categoria d-inline" v-show="films.length > 0"  @click="mostraNascondi()">FILM</h1>
     
         <ul v-if="films.length > 0" class="row" v-show="filmsCercati">
 
             <li class="col mb-5 list-unstyled" 
                 v-for="(film, index) in films" 
                 :key="index">
-
+ 
             <ShowCard 
                 :titolo="film.title" 
                 :titolo_originale="film.original_title" 
@@ -17,10 +17,13 @@
                 :voto="film.vote_average"
                 :poster_path="film.poster_path"
                 :overview="film.overview"
-                :vote_count="film.vote_count"/>
-    
+                :vote_count="film.vote_count"
+                :genres="film.generi"
+                :cast="film.cast"/>
+
             </li>
 
+            
         </ul>
         <div v-else>
             <!-- delay() serve per gestire il primissimo caso, dopo aver lanciato la pagina web -->
@@ -56,7 +59,7 @@
             "valoreCercato": String
         },
         methods: {
-
+                        
             delay(){
                 setTimeout(() => this.show = true ,200);
             },

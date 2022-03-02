@@ -1,7 +1,7 @@
 <template>
     <section>
 
-        <h1 class="categoria" v-show="series.length > 0"  @click="mostraNascondi()">SERIE TV</h1>
+        <h1 class="categoria d-inline" v-show="series.length > 0"  @click="mostraNascondi()">SERIE TV</h1>
 
         <ul v-if="series.length > 0" class="row" v-show="serieCercate">
 
@@ -15,7 +15,9 @@
                 :lingua_originale="serie.original_language" 
                 :voto="serie.vote_average"
                 :poster_path="serie.poster_path"
-                :overview="serie.overview"/>
+                :overview="serie.overview"
+                :genres="serie.generi"
+                :cast="serie.cast"/>
 
             </li>
 
