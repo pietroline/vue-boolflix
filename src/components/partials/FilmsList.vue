@@ -2,6 +2,7 @@
     <section>
 
         <h1 class="categoria d-inline" v-show="films.length > 0"  @click="mostraNascondi()">FILM</h1>
+        <p>Risultati con parola chiave inserita: "{{valoreCercato}}"</p>
     
         <ul v-if="films.length > 0" class="row" v-show="filmsCercati">
 
@@ -31,7 +32,6 @@
             {{delay()}}
             <div v-show="show">
                 <span class="fs-1">Non ci sono film disponibili</span>
-                <div>Hai cercato: "{{valoreCercato}}"</div>
             </div>
         </div>
 

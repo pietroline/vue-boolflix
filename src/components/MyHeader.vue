@@ -7,6 +7,10 @@
             <div class="col">
                 <form class="m-2 d-flex justify-content-center justify-content-md-end">
                     <input class="form-control ms_width_20rem" placeholder="Cerca un film o serie tv...." type="text" v-model="ricerca">
+                    <select name="allGenresFilms" class="ms-2" v-model="genreSelectedFilms" @change="$emit('genreSelectedFilms', genreSelectedFilms)">
+                        <option value="">Genere Film</option>
+                        <option v-for="(genre, index) in allGenresFilms" :key="index" :value="genre.name">{{genre.name}}</option>
+                    </select>
                     <button type="submit" class="btn btn-light ms-2" @click.prevent="avviaRicerca()">Ricerca</button>
                 </form>    
             </div>           
@@ -26,14 +30,18 @@
         data(){
             return{
                 ricerca: "",
+                genreSelectedFilms: "",
             }
+        },
+        props:{
+            "allGenresFilms": Array,
         },
         methods:{
             avviaRicerca(){
                 if(this.ricerca != ""){
                     this.$emit('ricerca', this.ricerca);
                     setTimeout(()=>{
-                        this.ricerca=""
+                        this.ricerca="";
                     },100);
                 }
             }

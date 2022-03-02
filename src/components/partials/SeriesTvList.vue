@@ -2,6 +2,7 @@
     <section>
 
         <h1 class="categoria d-inline" v-show="series.length > 0"  @click="mostraNascondi()">SERIE TV</h1>
+        <p>Risultati con parola chiave inserita: "{{valoreCercato}}"</p>
 
         <ul v-if="series.length > 0" class="row" v-show="serieCercate">
 
@@ -29,7 +30,6 @@
             {{delay()}}
             <div v-show="show">
                 <span class="fs-1">Non ci sono serie tv disponibili</span>
-                <div>Hai cercato: "{{valoreCercato}}"</div>
             </div>
         </div>
 

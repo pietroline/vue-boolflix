@@ -1,9 +1,9 @@
 <template>
   <div id="app">
     
-    <MyHeader @ricerca="richiestaAPI"/>
+    <MyHeader @ricerca="richiestaAPI" :allGenresFilms="allGenresFilms" @genreSelectedFilms="genreSelectedFilms"/>
 
-    <MyMain :films="apiRispostaFilms" :series="apiRispostaSerieTv" :valoreCercato="valoreCercato"/>
+    <MyMain :films="apiRispostaFilmsFiltrata" :series="apiRispostaSerieTv" :valoreCercato="valoreCercato"/>
   </div>
 </template>
 
@@ -21,6 +21,24 @@
       MyHeader,
       MyMain,
     },
+    mounted: function () {
+      this.$nextTick(function () {
+
+        // richiesta per tutti i generi film
+        axios
+              .get(`https://api.themoviedb.org/3/genre/movie/list?api_key=${this.apiKey}&language=en-US`)
+
+              .then(response => {
+                this.allGenresFilms=response.data.genres;
+              })
+
+              .catch(function (error) {
+                console.log(error);
+              });
+
+      })
+
+    },
     data(){
       return{
         apiKey: "645226498552dd0739079c2786443593",
@@ -29,7 +47,32 @@
         apiRispostaFilms: [],
         apiRispostaSerieTv: [],
         valoreCercato: null,
+        allGenresFilms: [],
+        genereSelezionatoFilms: "",
+        allGenresSeriesTv: [],
+        genereSelezionatoSerieTv: "",
       }
+    },
+    computed: {
+      apiRispostaFilmsFiltrata(){
+        let ritorno = [];
+        if(this.genereSelezionatoFilms != ""){
+          
+            ritorno = this.apiRispostaFilms.filter(film =>{
+              for(let i=0; i<film.generi.length; i++){
+                if(film.generi[i] == this.genereSelezionatoFilms){
+                  return film;
+                }
+              }
+            });
+          
+        }else{
+          ritorno = this.apiRispostaFilms;
+        }
+
+        return ritorno;
+      },
+
     },
     methods:{
  
@@ -170,7 +213,10 @@
               });
         });
       },
-      
+
+      genreSelectedFilms(genereSelezionatoFilms){
+        this.genereSelezionatoFilms = genereSelezionatoFilms;
+      },
 
     }
   }
