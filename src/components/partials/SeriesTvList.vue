@@ -2,7 +2,7 @@
     <section>
 
         <h1 class="categoria d-inline" v-show="series.length > 0"  @click="mostraNascondi()">SERIE TV</h1>
-        <p>Risultati con parola chiave inserita: "{{valoreCercato}}"</p>
+        <p>Risultati con parola chiave inserita: "{{valoreCercato}}" (Risultati non filtrati per genere)</p>
 
         <ul v-if="series.length > 0" class="row" v-show="serieCercate">
 
